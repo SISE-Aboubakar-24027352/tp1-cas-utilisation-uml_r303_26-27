@@ -1,0 +1,20 @@
+@startuml
+title TP1 - Exercice 1
+
+actor "Voyageur"
+actor "Machine_Centrale"
+
+rectangle "Distribution de billet"{
+Voyageur --- (Acheter un billet)
+Voyageur --- (Acheter un abonnement)
+(Acheter un abonnement) <.- (hebdomadaire) : <<extend>>
+(Acheter un abonnement) <.- (mensuel) : <<extend>>
+Machine_Centrale --- (Mettre à jour les tarifs des billets)
+(Traiter des erreurs) <|-- (de temps de reservation)
+(Traiter des erreurs) <|-- (d'annulation de transation)
+(Traiter des erreurs) <|-- (de manque de papier)
+(Traiter des erreurs) <.- (Acheter un billet) : <<extend>>
+(Traiter des erreurs) <.- (Acheter un abonnement) : <<extend>>
+}
+
+@enduml

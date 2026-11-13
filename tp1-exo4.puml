@@ -1,0 +1,40 @@
+@startuml
+title TP1 - Exercice 4
+
+actor "Porteur de carte" as Porteur
+actor "Client MaB'Arnaque" as Client
+actor "Agent de maintenance" as Agent
+actor "Système bancaire" as Banque
+
+Client --|> Porteur
+
+rectangle "GAB MaB'Arnaque" {
+  usecase "Retirer de l'argent" as UC1
+  usecase "Consulter le solde" as UC2
+  usecase "Déposer des espèces" as UC3
+  usecase "Déposer un chèque" as UC4
+  usecase "S'authentifier" as UC5
+  usecase "Sécuriser la transaction" as UC6
+  usecase "Recharger le distributeur" as UC7
+}
+
+Porteur --> UC1
+Client --> UC2
+Client --> UC3
+Client --> UC4
+Agent --> UC7
+
+Banque --> UC5
+Banque --> UC6
+
+UC1 ..> UC5 : <<include>>
+UC2 ..> UC5 : <<include>>
+UC3 ..> UC5 : <<include>>
+UC4 ..> UC5 : <<include>>
+
+UC1 ..> UC6 : <<include>>
+UC2 ..> UC6 : <<include>>
+UC3 ..> UC6 : <<include>>
+UC4 ..> UC6 : <<include>>
+
+@enduml

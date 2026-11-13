@@ -1,0 +1,35 @@
+@startuml
+title TP1 - Exercice 2
+
+actor "Passager"
+
+note as ChoisirEtage
+Sommaire d'identification
+    Titre: "Choisir Étage"
+    Résumé: "Permet au passager de se déplacer à l'étag voulu"
+    Acteurs: Passager P
+
+Description des scénarios
+    - Scénario normale:
+        1 P appuie sur le bouton intérieur de l'étage souhaité
+        2 Système allume le panneau d'affichage
+        3 Système ferme les portes
+        4 Système actionne le déplacement
+        5 Système arrête l'ascenceur vers l'étage souhaité
+        6 Système ouvre les portes
+        7 P quitte l'ascenceur
+        8 Système éteint le panneau d'affichage
+end note
+
+rectangle "Contrôleur d'Acenseur"{
+Passager - (Appuie button)
+(Appuie button) <|-- (intérieur)
+(Appuie button) <|-- (extérieur)
+(Appuie button) - (ChoisirEtage)
+(Appuie button) -.> (Afficher un message) : <<include>>
+(Appuie button) -.> (Actionne un déplacement) : <<include>>
+(intérieur) -.> (Ouvre/Ferme la porte) : <<include>>
+(extérieur) -.> (Appel de l'ascenceur) : <<include>>
+}
+
+@enduml

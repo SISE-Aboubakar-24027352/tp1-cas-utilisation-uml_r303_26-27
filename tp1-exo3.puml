@@ -1,0 +1,30 @@
+@startuml
+title TP1 - Exercice 3
+
+actor "Client"
+actor "Groupe"
+actor "Cuisine Industrielle" as CI
+actor "Organisation Subvention" as OS
+
+Client <|-- Groupe
+
+rectangle "Portail Livraison Repas" {
+  Client --> (S'inscrie individuellement)
+  Client --> (Choisir le menu par Internet)
+  Client -- (Gérer la livraison)
+  Client -- (Gérer la facturation)
+  
+  Groupe --> (S'inscrie en groue)
+  Groupe --> (Choisir le menu par E-mail)
+  
+  OS -- (Gérer les subventions)
+  CI -- (Lancer l'ordre de commande)
+  
+  (S'inscrire) <|-- (S'inscrie individuellement)
+  (S'inscrire) <|-- (S'inscrie en groupe)
+  (S'inscrire) .> (Gérer les subventions) : <<include>>
+  (Choisir le menu) <|-- (Choisir le menu par Internet)
+  (Choisir le menu) <|-- (Choisir le menu par E-mail)
+  (Choisir le menu) .> (Vérifier le régime alimentaire) : <<include>>
+}
+@enduml
